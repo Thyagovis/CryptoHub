@@ -1,14 +1,18 @@
 import { GetCoins } from "./service.js";
+import { FilterCoins } from "./service.js";
 import { CreateRow } from "./ui.js";
+import { CleanView } from "./ui.js";
+import { Search } from "./ui.js";
 
-async function init() {
+async function ShowFiltered(quantity){
 
     const coins = await GetCoins()
-    console.log(coins[0])
 
-    console.log(coins.length)
+    const filtered_coins = await FilterCoins(coins, quantity)
+    CleanView()
+    CreateRow(filtered_coins)
 
-    CreateRow(coins)
 }
 
-init()
+Search(ShowFiltered)
+

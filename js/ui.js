@@ -119,3 +119,22 @@ export function CreateRow(Coins){
     }
 
 }
+
+export function CleanView(){
+
+    view.innerHTML = '<tr><th>#</><th>Nome</th><th>Preço</th><th>Mudanças 24h</th><th>Market cap</th><th>Volume</th></tr>'
+
+}
+
+export function Search(callback){
+
+    const button = document.getElementById('btngo')
+    const input = document.getElementById('rank')
+    
+    button.addEventListener('click', () => {
+
+        callback(Number(input.value))
+
+    })
+
+}
