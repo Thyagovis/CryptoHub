@@ -1,6 +1,21 @@
+import {millify} from 'https://esm.sh/millify';
+
 const display = document.getElementById("view")
 const rank = document.getElementById('rank')
 const btngo = document.getElementById("btngo")
+
+function Verifica_porcentagem(valor){
+
+    if(valor >= 0){
+
+        return 'increase'
+
+    }else{
+
+        return 'decrease'
+    }
+
+}
 
 function CriarRow(rank, nome, simbolo, logo, preco, mudancas, cap, vol){
 
@@ -15,12 +30,30 @@ function CriarRow(rank, nome, simbolo, logo, preco, mudancas, cap, vol){
     const market = document.createElement("td")
     const volume = document.createElement("td")
     const div_name = document.createElement('div')
+    const div_changes = document.createElement('div')
 
     const logo_image = document.createElement('img')
+    const increase_decrease_image = document.createElement('img')
+    const percent_text = document.createElement('p')
+    percent_text.textContent = `${mudancas}`
     const div_text = document.createElement('div')
 
     div_name.className = 'logo-nome'
+    div_changes.className = Verifica_porcentagem(mudancas)
+
+    if(div_changes.className == 'increase'){
+
+        increase_decrease_image.src = './assets/icons/increase.png'
+
+    }else{
+
+        increase_decrease_image.src = './assets/icons/decrease.png'
+
+    }
     
+    
+    div_changes.appendChild(increase_decrease_image)
+    div_changes.appendChild(percent_text)
     div_name.appendChild(logo_image)
     div_name.appendChild(div_text)
     
@@ -34,7 +67,7 @@ function CriarRow(rank, nome, simbolo, logo, preco, mudancas, cap, vol){
     symbol.textContent = `${simbolo}`
     name.textContent = `${nome}`
     price.textContent = `${preco}`
-    changes.textContent = `${mudancas}`
+    changes.appendChild(div_changes)
     market.textContent = `${cap}`
     volume.textContent = `${vol}`
     
@@ -79,10 +112,10 @@ async function Consultar(rank){
             filtered_result[i].name,
             filtered_result[i].symbol,
             `https://static.coinpaprika.com/coin/${filtered_result[i].id}/logo.png`,
-            (filtered_result[i].quotes.USD.price).toFixed(2),
+            millify((filtered_result[i].quotes.USD.price)),
             filtered_result[i].quotes.USD.percent_change_24h,
-            filtered_result[i].quotes.USD.market_cap,
-            (filtered_result[i].quotes.USD.volume_24h).toFixed(2)
+            millify(filtered_result[i].quotes.USD.market_cap),
+            millify((filtered_result[i].quotes.USD.volume_24h).toFixed(2))
         )
     }
 }
