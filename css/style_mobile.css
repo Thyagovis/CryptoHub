@@ -1,0 +1,52 @@
+@media (max-width: 720px){
+
+    .display{
+
+        width: 95%;
+
+        tr{
+
+            font-size: 10px;
+
+        }
+
+    }
+
+    .logo-nome{
+
+        div{
+
+            h3{
+
+                font-size: 12px;
+
+            }
+
+            p{
+
+                font-size: 10px;
+
+            }
+
+       }
+
+    }
+
+    .increase, .decrease{
+
+        width: 50%;
+
+        img{
+
+            height: 0px;
+        }
+
+    }
+
+    .desktop{
+
+        display: none;
+
+    }
+
+}

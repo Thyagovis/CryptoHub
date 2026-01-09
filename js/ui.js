@@ -93,6 +93,7 @@ function CreateVolume(Volume){
     const volume = document.createElement('td')
     
     volume.textContent = `${millify(Volume)}`
+    volume.className = 'desktop'
 
     return volume
 }
@@ -122,7 +123,7 @@ export function CreateRow(Coins){
 
 export function CleanView(){
 
-    view.innerHTML = '<tr><th>#</><th>Nome</th><th>Preço</th><th>Mudanças 24h</th><th>Market cap</th><th>Volume</th></tr>'
+    view.innerHTML = '<tr><th>#</><th>Nome</th><th>Preço</th><th>Mudanças 24h</th><th>Market cap</th><th class="desktop">Volume</th></tr>'
 
 }
 
